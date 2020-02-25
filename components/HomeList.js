@@ -4,6 +4,7 @@ import {
   Text,
   View,
   SafeAreaView,
+  TouchableOpacity,
   FlatList,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,27 +12,30 @@ import { Ionicons } from '@expo/vector-icons';
 const DATA = [
   {
     id: '0',
-    title: 'お題1',
+    title: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     like: 100,
     card: 20
   },
   {
     id: '1',
-    title: 'お題2',
+    title: 'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s.',
     like: 80,
     card: 15
   },
   {
     id: '2',
-    title: 'お題3',
+    title: 'When an unknown printer took a galley of type and scrambled it to make a type specimen book.',
     like: 70,
     card: 10
   },
 ];
 
-function Item({ item }) {
+function Item({ item, gotoDetail }) {
   return (
-    <View style={styles.item}>
+    <TouchableOpacity
+      style={styles.item}
+      onPress={() => gotoDetail(item.id)}
+    >
       <Text style={styles.title}>{item.title}</Text>
       <View style={styles.row}>
         <View style={styles.col}>
@@ -51,18 +55,17 @@ function Item({ item }) {
           <Text style={styles.num}>{item.card}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
-export default function HomeList(props) {
+export default function HomeList({ gotoDetail }) {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
         data={DATA}
-        renderItem={({ item }) => <Item item={item} />}
+        renderItem={({ item }) => <Item item={item} gotoDetail={gotoDetail} />}
         keyExtractor={item => item.id}
-        onPress={() => props.navigation.navigate('Detail', {id: item.id})}
       />
     </SafeAreaView>
   );
@@ -72,13 +75,14 @@ const styles = StyleSheet.create({
     width: '100%',
     flex: 1,
     marginTop: 10,
+    marginBottom: 30,
     marginHorizontal: 0,
   },
   item: {
     backgroundColor: '#fff',
     borderColor: '#ccc',
     borderWidth: 1,
-    marginTop: 10,
+    marginTop: 15,
     marginVertical: 0,
     padding: 10,
   },

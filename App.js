@@ -57,7 +57,7 @@ export default function App(props) {
           <Stack.Navigator>
             <Stack.Screen name="Root" component={BottomTabNavigator} />
             <Stack.Screen name="Home" component={HomeScreen} initialParams={{}} />
-            <Stack.Screen name="Detail" component={DetailScreen} initialParams={{id: ''}} />
+            <Stack.Screen name="Detail" component={DetailScreen} initialParams={{id: ''}} tabBarVisible={true} />
             <Stack.Screen name="Blank" component={BlankScreen} initialParams={{}} />
           </Stack.Navigator>
         </NavigationContainer>

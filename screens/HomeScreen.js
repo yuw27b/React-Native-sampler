@@ -5,14 +5,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import HomeSort from '../components/HomeSort';
 import HomeList from '../components/HomeList';
 
-export default function HomeScreen({navigation}) {
+export default function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
 
         <View style={styles.getStartedContainer}>
           <HomeSort />
-          <HomeList navigation={navigation} />
+          <HomeList gotoDetail={(id) => navigation.navigate('Detail', {id: id})} />
         </View>
 
       </ScrollView>
